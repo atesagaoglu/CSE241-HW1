@@ -1,14 +1,14 @@
-#ifndef TETRAMINO_H
-#define TETRAMINO_H
+#ifndef TETROMINO_H
+#define TETROMINO_H
 
 #include <vector>
 #include "enums.h"
 
-class Tetramino {
+class Tetromino {
 	public:
 		//constructors
-		Tetramino(); //no-parameter inits to o tetramino
-		Tetramino(TetraminoType type); //no-parameter
+		Tetromino(); //no-parameter inits to o tetramino
+		Tetromino(TetrominoType type); //no-parameter
 
 		//member functions
 		bool rotate(RotationDirection dir);

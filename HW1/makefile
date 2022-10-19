@@ -4,23 +4,23 @@ norun: clean compile link
 clean:
 	@clear
 	@echo "deleting previous files"
-	rm -f main main.o tetramino.o run
+	rm -f main main.o tetromino.o run
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 clean-run:
 	@clear
 	@echo "deleting previous files"
-	rm -f main main.o tetramino.o
+	rm -f main main.o tetromino.o
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 compile:
 	@echo "Compiling files"
-	g++ -c -std=c++11 main.cpp tetramino.cpp
+	g++ -c -std=c++11 main.cpp tetromino.cpp
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 link:
 	@echo "linking"
-	g++ -o run main.o tetramino.o
+	g++ -o run main.o tetromino.o
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"
 
 test:
