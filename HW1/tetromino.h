@@ -11,11 +11,18 @@ class Tetromino {
 		Tetromino();
 		Tetromino(TetrominoType type);
 
-		bool rotate(RotationDirection dir);
-		bool print() const;
-		// bool canFit(Pos other);
+		void setTypeChar(char inp);
+		char getTypeChar() const;
+
+		bool rotate(Direction dir);
+		void print() const;
+		bool canFit(Pos other);
+
+		void shiftTetro();
+
 	private:
 		TetrominoType m_type;
+		char m_type_char;
 		std::vector< std::vector<char> > m_grid{
 			{'.','.','.','.'},
 			{'.','.','.','.'},

@@ -49,11 +49,17 @@ int main(){
 
 		// constructing temporary objects than pushing them to a vector of objects
 		Tetromino temp_block(temp_type_enum);
+		temp_block.setTypeChar(temp_type);
 		blocks.push_back(temp_block);
 
-
+		
 	}
 
-
-	
+	for(int i=0; i<tetro_count; i++){
+		// cout << blocks.at(i).getTypeChar() << endl;
+		// blocks.at(i).rotate(Direction::right); //tester
+		// blocks.at(i).rotate(Direction::left); //tester
+		// blocks.at(i).shiftTetro();
+		blocks.at(i).print();
+	}
 }
