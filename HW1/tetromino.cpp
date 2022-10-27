@@ -10,10 +10,14 @@ Tetromino::Tetromino() : m_type(TetrominoType::O) { // no param. constructor ini
 			m_grid[i][j] = 'O';
 		}
 	}
+	//aligns block to the lift side by calling shiftTetro() on itself
 	this->shiftTetro();
 }
 
+//actual constructor
 Tetromino::Tetromino(TetrominoType type) : m_type(type) { // only need 1 parameter to construct the tetromino object
+	
+	//fills the array according to m_type 
 	switch(type){
 		case TetrominoType::I:
 			for(int i=0; i<4; i++) m_grid[2][i] = 'I';
@@ -56,6 +60,7 @@ Tetromino::Tetromino(TetrominoType type) : m_type(type) { // only need 1 paramet
 			m_grid [3][1] = 'Z';
 			break;
 	}
+	//at first i didn't think about aligning blocks to the left so after writing shift method i just added it here to align blocks
 	this->shiftTetro();
 }
 
@@ -63,11 +68,12 @@ void Tetromino::print() const{
 	for(int y=0; y<4; y++){
 		for(int x=0; x<4; x++){
 
-			// if(m_grid[x][y] == '.'){
-			// 	std::cout << ' ';
-			// }else{
+			// prints a whitespace instead of . 
+			if(m_grid[x][y] == '.'){
+				std::cout << ' ';
+			}else{
 				std::cout << m_grid[x][y];
-			// }
+			}
 
 		}
 		std::cout << std::endl;
@@ -77,7 +83,7 @@ void Tetromino::print() const{
 }
 
 bool Tetromino::rotate(Direction dir){
-
+	//used temp grid to be sure that there weren't any problems with swapping elements
 	std::vector< std::vector <char> > temp_grid{
 		{'.','.','.','.'},
 		{'.','.','.','.'},
@@ -92,6 +98,7 @@ bool Tetromino::rotate(Direction dir){
 			}
 		}
 		m_grid = temp_grid;
+		//again used shift method to align
 		this->shiftTetro();
 		return true;
 	}else if(dir == Direction::left){ // Anti-Clockwise rotaion
@@ -108,7 +115,7 @@ bool Tetromino::rotate(Direction dir){
 	}
 	
 }
-
+//getters and setters
 void Tetromino::setTypeChar(char inp){
 	m_type_char = inp;
 }
@@ -120,7 +127,8 @@ char Tetromino::getTypeChar() const{
 void Tetromino::shiftTetro(){
 	int xi=-1;; // x index of the left-most piece of tetromino inside grid
 
-
+	//this for loop finds the left-most piece of a block
+	//starts checking in column 0 and then checks column by column
 	for(int x=0; x<4; x++){
 		for(int y=0; y<4; y++){
 			if(m_grid[x][y]!='.'){
@@ -132,12 +140,22 @@ void Tetromino::shiftTetro(){
 	}
 
 	// std::cout <<xi <<std::endl;
+
+	//actual shifting part
+	//each element should be shifted xi+1 times
 	for(int i=0; i<xi; i++){
 
 		for(int y=0; y<4; y++){
 			for(int x=0; x<3; x++){
+				//used built-in swap method
+				//y doesn't change
+				//x gets swapped with the element on it's left side
 				std::swap(m_grid[x][y],m_grid[x+1][y]);
 			}
 		}
 	}
+}
+
+void Tetromino::canFit(){
+	
 }

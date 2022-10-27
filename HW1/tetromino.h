@@ -16,9 +16,10 @@ class Tetromino {
 
 		bool rotate(Direction dir);
 		void print() const;
-		bool canFit(Pos other);
+		void shiftTetro(); // a method that shifts blocks to the left side of the 4x4 vector
+		//aligns all blocks to left side
 
-		void shiftTetro();
+		void canFit(); // couldn't implement
 
 	private:
 		TetrominoType m_type;

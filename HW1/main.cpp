@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 	int tetro_count;
-	vector<Tetromino> blocks;
+	vector<Tetromino> blocks; //vector of classes which hold tetromino info
 
 	cout << "How many tetrominos do you want to generate?" << endl;
 	cin >> tetro_count;
@@ -59,7 +59,7 @@ int main(){
 		// cout << blocks.at(i).getTypeChar() << endl;
 		// blocks.at(i).rotate(Direction::right); //tester
 		// blocks.at(i).rotate(Direction::left); //tester
-		// blocks.at(i).shiftTetro();
 		blocks.at(i).print();
 	}
+
 }
