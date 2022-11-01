@@ -2,6 +2,7 @@
 #include <vector>
 #include "tetromino.h"
 #include "enums.h"
+#include "tetris.h"
 
 using namespace std;
 
@@ -61,5 +62,15 @@ int main(){
 		// blocks.at(i).rotate(Direction::left); //tester
 		blocks.at(i).print();
 	}
+
+	int width_board, height_board;
+
+	cout << "Enter the width and height seperated by a whitespace." << endl;
+	cin >> width_board;
+	cin >> height_board;
+
+	Tetris tet(width_board,height_board);
+	for(int i=0;i<2;i++)
+	tet.draw();
 
 }

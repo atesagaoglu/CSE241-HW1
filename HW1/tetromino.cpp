@@ -64,7 +64,25 @@ Tetromino::Tetromino(TetrominoType type) : m_type(type) { // only need 1 paramet
 	this->shiftTetro();
 }
 
-void Tetromino::print() const{
+void Tetromino::print(){
+	for(int y=0; y<4; y++){
+		for(int x=0; x<4; x++){
+
+			// prints a whitespace instead of . 
+			if(m_grid[x][y] == '.'){
+				std::cout << ' ';
+			}else{
+				std::cout << m_grid[x][y];
+			}
+
+		}
+		std::cout << std::endl;
+	}
+
+	std::cout << std::endl;
+}
+
+void Tetromino::print(int hPos){
 	for(int y=0; y<4; y++){
 		for(int x=0; x<4; x++){
 

@@ -15,7 +15,9 @@ class Tetromino {
 		char getTypeChar() const;
 
 		bool rotate(Direction dir);
-		void print() const;
+		void print() ;
+		void print(int hPos) ; //overloading print function
+		//if hpos is given cursor will move hPos tiles to the right and then print
 		void shiftTetro(); // a method that shifts blocks to the left side of the 4x4 vector
 		//aligns all blocks to left side
 

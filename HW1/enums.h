@@ -1,5 +1,4 @@
 // using seperate file to store enum classes
-
 #ifndef ENUMS_H
 #define ENUMS_H
 
