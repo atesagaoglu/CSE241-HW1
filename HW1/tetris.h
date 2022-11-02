@@ -14,7 +14,7 @@ class Tetris{
 		Tetris(int w, int h);
 
 		void draw();
-		void add(TetrominoType);
+		int add();
 		void fit(Tetromino);
 		void animate();
 

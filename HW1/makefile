@@ -18,6 +18,11 @@ compile:
 	g++ -c -std=c++11 main.cpp tetromino.cpp tetris.cpp
 	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"
 
+compileg:
+	@echo "Compiling files"
+	g++ -c -std=c++11 main.cpp tetromino.cpp tetris.cpp
+	@echo "~~~~~~~~~~~~~~~~~~~~~~~\n"	
+
 link:
 	@echo "linking"
 	g++ -o run main.o tetromino.o tetris.o

@@ -10,6 +10,8 @@ int main(){
 	int tetro_count;
 	vector<Tetromino> blocks; //vector of classes which hold tetromino info
 
+//HIDE	
+/*
 	cout << "How many tetrominos do you want to generate?" << endl;
 	cin >> tetro_count;
 
@@ -63,6 +65,8 @@ int main(){
 		blocks.at(i).print();
 	}
 
+	*/
+//HIDE
 	int width_board, height_board;
 
 	cout << "Enter the width and height seperated by a whitespace." << endl;
@@ -70,7 +74,9 @@ int main(){
 	cin >> height_board;
 
 	Tetris tet(width_board,height_board);
-	for(int i=0;i<2;i++)
-	tet.draw();
+	
+	while(tet.add()!= -1){
+		tet.animate();
+	}
 
 }

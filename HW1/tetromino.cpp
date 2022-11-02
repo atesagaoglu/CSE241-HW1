@@ -3,6 +3,7 @@
 #include "tetromino.h"
 #include <iostream>
 #include <cmath> 
+#include <string>
 
 Tetromino::Tetromino() : m_type(TetrominoType::O) { // no param. constructor inits to o type by default
 	for(int i=0; i<2; i++){
@@ -69,12 +70,12 @@ void Tetromino::print(){
 		for(int x=0; x<4; x++){
 
 			// prints a whitespace instead of . 
-			if(m_grid[x][y] == '.'){
-				std::cout << ' ';
-			}else{
-				std::cout << m_grid[x][y];
-			}
-
+			// if(m_grid[x][y] == '.'){
+				// std::cout << ' ';
+			// }else{
+				// std::cout << m_grid[x][y];
+			// }
+			std::cout << m_grid[x][y] << " ";
 		}
 		std::cout << std::endl;
 	}
@@ -83,15 +84,26 @@ void Tetromino::print(){
 }
 
 void Tetromino::print(int hPos){
-	for(int y=0; y<4; y++){
-		for(int x=0; x<4; x++){
+	
+	//creates a escape sequance by concatinating hpos into a string
+	//basically moves hPos times to right in terminal
+	std::string esc{"\033["};
+	esc = esc + std::to_string(hPos) + "C";
+	
+	//escape sequaence to se the cursor to top left
+	std::string posTL{"\033[1;1H"};
 
-			// prints a whitespace instead of . 
-			if(m_grid[x][y] == '.'){
-				std::cout << ' ';
-			}else{
-				std::cout << m_grid[x][y];
-			}
+	std::cout << posTL;
+
+	for(int y=0; y<4; y++){
+		std::cout << esc;
+		for(int x=0; x<4; x++){
+			// if(m_grid[x][y] == '.'){
+				// std::cout << ' ';
+			// }else{
+				// std::cout << m_grid[x][y];
+			// }
+			std::cout << m_grid[x][y] << " ";
 
 		}
 		std::cout << std::endl;
@@ -176,4 +188,8 @@ void Tetromino::shiftTetro(){
 
 void Tetromino::canFit(){
 	
+}
+
+char Tetromino::getGrid(int x,int y){
+	return m_grid[x][y];
 }
