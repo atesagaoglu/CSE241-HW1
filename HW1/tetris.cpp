@@ -102,9 +102,8 @@ int Tetris::add(){
 
 	return 1;
 }
-//FIXME
-void Tetris::animate(){
-	int flag=0;
+
+int Tetris::animate(){
 	while(1){
 		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
@@ -117,22 +116,28 @@ void Tetris::animate(){
 			tempboard.push_back(temp);
 		}
 
+		for(int y=0;y<m_height;y++){
+			for(int x=0; x<m_width;x++){
+				if(m_board[x][y] == '#'){
+					tempboard[x][y] = '#';
+				}
+			}
+	}
+
 		for(int y=m_height-1;y>=0;y--){
 			for(int x=0;x<m_width;x++){
 				
 				if(m_board[x][y] != '.' && m_board[x][y] != '#'){
-					if(y==m_height-1){
-						flag=-1;
-						break;
+					if(y==m_height-1 || m_board[x][y+1] == '#'){
+						this->draw();
+						return-1;
 					}
 					tempboard[x][y+1] = m_board[x][y];
 				}
 			}
-			if(flag==-1) break;
 		}
 		m_board = tempboard;
 		this->draw();
-		if(flag==-1) break;
 
 	}
 	
@@ -142,4 +147,14 @@ void Tetris::animate(){
 		// }
 	// }
 
+}
+
+void Tetris::makePerm(){
+	for(int y=0;y<m_height;y++){
+		for(int x=0; x<m_width;x++){
+			if(m_board[x][y] != '.' && m_board[x][y] != '#'){
+				m_board[x][y] = '#';
+			}
+		}
+	}
 }

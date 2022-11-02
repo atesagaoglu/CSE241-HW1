@@ -16,9 +16,10 @@ class Tetris{
 		void draw();
 		int add();
 		void fit(Tetromino);
-		void animate();
+		int animate();
 
 		int getHalfWidth();
+		void makePerm();
 	private:
 		int m_width;
 		int m_height;

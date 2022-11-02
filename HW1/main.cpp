@@ -77,6 +77,7 @@ int main(){
 	
 	while(tet.add()!= -1){
 		tet.animate();
+		tet.makePerm();
 	}
 
 }
