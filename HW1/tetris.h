@@ -15,14 +15,19 @@ class Tetris{
 
 		void draw();
 		int add();
+		int add(TetrominoType type, Direction dir);
 		void fit(Tetromino);
 		int animate();
 
 		int getHalfWidth();
 		void makePerm();
+
+		int fit();
 	private:
 		int m_width;
 		int m_height;
+
+		TetrominoType m_last_type;
 
 		std::vector< std::vector <char> > m_board;
 };

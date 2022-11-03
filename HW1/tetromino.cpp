@@ -61,8 +61,6 @@ Tetromino::Tetromino(TetrominoType type) : m_type(type) { // only need 1 paramet
 			m_grid [3][1] = 'Z';
 			break;
 	}
-	//at first i didn't think about aligning blocks to the left so after writing shift method i just added it here to align blocks
-	this->shiftTetro();
 }
 
 void Tetromino::print(){
@@ -128,8 +126,6 @@ bool Tetromino::rotate(Direction dir){
 			}
 		}
 		m_grid = temp_grid;
-		//again used shift method to align
-		this->shiftTetro();
 		return true;
 	}else if(dir == Direction::left){ // Anti-Clockwise rotaion
 		for(int ny=0; ny<4; ny++){
@@ -138,7 +134,6 @@ bool Tetromino::rotate(Direction dir){
 			}
 		}
 		m_grid = temp_grid;
-		this->shiftTetro();
 		return true;
 	}else{ // invalid direction
 		return false;
@@ -153,42 +148,6 @@ void Tetromino::setTypeChar(char inp){
 char Tetromino::getTypeChar() const{
 	return m_type_char;
 };
-
-void Tetromino::shiftTetro(){
-	int xi=-1;; // x index of the left-most piece of tetromino inside grid
-
-	//this for loop finds the left-most piece of a block
-	//starts checking in column 0 and then checks column by column
-	for(int x=0; x<4; x++){
-		for(int y=0; y<4; y++){
-			if(m_grid[x][y]!='.'){
-				xi=x;
-				break;
-			}
-		}
-		if(xi!=-1) break;
-	}
-
-	// std::cout <<xi <<std::endl;
-
-	//actual shifting part
-	//each element should be shifted xi+1 times
-	for(int i=0; i<xi; i++){
-
-		for(int y=0; y<4; y++){
-			for(int x=0; x<3; x++){
-				//used built-in swap method
-				//y doesn't change
-				//x gets swapped with the element on it's left side
-				std::swap(m_grid[x][y],m_grid[x+1][y]);
-			}
-		}
-	}
-}
-
-void Tetromino::canFit(){
-	
-}
 
 char Tetromino::getGrid(int x,int y){
 	return m_grid[x][y];

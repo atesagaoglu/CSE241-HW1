@@ -97,9 +97,7 @@ int Tetris::add(){
 	}
 	
 	this->draw();
-	// tempTetro.print(this->getHalfWidth());
-
-
+	m_last_type = temp_type_enum;
 	return 1;
 }
 
@@ -122,7 +120,7 @@ int Tetris::animate(){
 					tempboard[x][y] = '#';
 				}
 			}
-	}
+		}
 
 		for(int y=m_height-1;y>=0;y--){
 			for(int x=0;x<m_width;x++){
@@ -140,12 +138,6 @@ int Tetris::animate(){
 		this->draw();
 
 	}
-	
-	// for(int y=0;y<m_height;y++){
-		// for(int x=0;x<m_width;x++){
-			// if(m_board[x][y] != '.') m_board[x][y] = '#';
-		// }
-	// }
 
 }
 
@@ -157,4 +149,113 @@ void Tetris::makePerm(){
 			}
 		}
 	}
+}
+
+int Tetris::fit(){
+	const char LEFT = 'a';
+	const char RIGHT = 'd';
+	const char UP = 'w';
+	const char DOWN = 's';
+	const char CW = 'x';
+	const char ACW = 'z';
+
+	char key = 0;
+
+	while (key != DOWN){
+		std::cin >> key;
+
+		std::vector< std::vector <char> > tempboard;
+		std::vector<char> temp;
+		for(int i=0; i<m_height; i++){
+			temp.push_back('.');
+		}
+		for(int i=0; i<m_width; i++){
+			tempboard.push_back(temp);
+		}
+
+		for(int y=0;y<m_height;y++){
+			for(int x=0; x<m_width;x++){
+				if(m_board[x][y] == '#'){
+					tempboard[x][y] = '#';
+				}
+			}
+		}
+
+		switch(key){
+			case LEFT:
+				for(int y=0; y<m_height; y++){
+					for(int x=0; x<m_width; x++){
+						
+						if((m_board[x][y] != '.' && m_board[x][y] != '#') && x==0){
+							return -1;
+						}
+						
+						if(m_board[x][y] != '.' && m_board[x][y] != '#'){
+							tempboard[x-1][y] = m_board[x][y];
+						}
+					}
+					
+				}
+				m_board = tempboard;
+				this->draw();
+				break;
+			case RIGHT:
+				for(int y=0; y<m_height; y++){
+					for(int x=0; x<m_width; x++){
+						
+						if((m_board[x][y] != '.' && m_board[x][y] != '#') && x==m_width-1){
+							return -1;
+						}
+						
+						if(m_board[x][y] != '.' && m_board[x][y] != '#'){
+							tempboard[x+1][y] = m_board[x][y];
+						}
+					}
+					
+				}
+				m_board = tempboard;
+				this->draw();
+				break;
+			case DOWN:
+				return 1;
+			case CW:
+				this->add(m_last_type,Direction::right);
+				this->draw();
+				break;
+			case ACW:
+				this->add(m_last_type,Direction::left);
+				this->draw();
+				break;
+
+			default:
+				break; 
+		}
+	}
+}
+//FIXME
+int Tetris::add(TetrominoType type, Direction dir){
+	
+	Tetromino tempTetro(type);
+	tempTetro.rotate(dir);
+	for(int y=0; y<4; y++){
+		for(int x=0; x<m_width; x++){
+			if(m_board[x][y] != '.' && m_board[x][y] != '#'){
+				m_board[x][y] = '.';
+ 			}
+		}
+	}
+	
+	for(int y=0; y<4; y++){
+		for(int x=0;x<4;x++){
+			
+			if(m_board[this->getHalfWidth()+x-1][y] != '.'){
+				continue;
+			}else{
+				m_board[this->getHalfWidth()+x-1][y] = tempTetro.getGrid(x,y);
+			}
+		}
+	}
+
+	this->draw();
+	return 1;
 }

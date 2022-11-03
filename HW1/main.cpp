@@ -68,7 +68,7 @@ int main(){
 	*/
 //HIDE
 	int width_board, height_board;
-
+	cout << "Keys: " << endl << "A/D move left/right" << endl << "S drop" << endl << "Z/X rotate right/left" << endl;
 	cout << "Enter the width and height seperated by a whitespace." << endl;
 	cin >> width_board;
 	cin >> height_board;
@@ -76,6 +76,7 @@ int main(){
 	Tetris tet(width_board,height_board);
 	
 	while(tet.add()!= -1){
+		while(tet.fit() != 1) tet.draw();
 		tet.animate();
 		tet.makePerm();
 	}
