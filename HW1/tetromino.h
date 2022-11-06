@@ -18,11 +18,10 @@ class Tetromino {
 		void print() ;
 		void print(int hPos) ; //overloading print function
 		//if hpos is given cursor will move hPos tiles to the right and then
-		void shiftTetro(); // a method that shifts blocks to the left side of the 4x4 vector
-		//aligns all blocks to left side
 
 		void canFit(); // couldn't implement
 		char getGrid(int,int);
+
 
 	private:
 		TetrominoType m_type;

@@ -11,9 +11,7 @@ Tetromino::Tetromino() : m_type(TetrominoType::O) { // no param. constructor ini
 			m_grid[i][j] = 'O';
 		}
 	}
-	//aligns block to the lift side by calling shiftTetro() on itself
-	this->shiftTetro();
-}
+	}
 
 //actual constructor
 Tetromino::Tetromino(TetrominoType type) : m_type(type) { // only need 1 parameter to construct the tetromino object
